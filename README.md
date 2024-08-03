@@ -1,1 +1,1 @@
-# ImageStitching
+# Implementation of FAST Algorithm
