@@ -1,4 +1,4 @@
-#include "../header/orb.hpp"
+#include "../header/fast.hpp"
 #include "../header/feature.hpp"
 #include "../header/mat.hpp"
 #include "../header/stitch.hpp"
@@ -8,10 +8,10 @@
 #include <iostream>
 #include <map>
 
-ORB::ORB(Mat &_image, std::vector<Keypoint> &_keypoints, Mat &_descriptor)
+FAST::FAST(Mat &_image, std::vector<Keypoint> &_keypoints, Mat &_descriptor)
     : image(_image), keypoints(_keypoints), descriptor(_descriptor) {}
 
-void ORB::detectKeypoints()
+void FAST::detectKeypoints()
 {
     int size = (image.rows * image.cols * 3);
     for (int i = 0; i < size - 2; i += 3)
@@ -59,11 +59,11 @@ void ORB::detectKeypoints()
     }
 }
 
-void ORB::detectDescriptor()
+void FAST::detectDescriptor()
 {
 }
 
-std::pair<bool, unsigned char> ORB::isPixelKeypoint(int x, int y, float I)
+std::pair<bool, unsigned char> FAST::isPixelKeypoint(int x, int y, float I)
 {
     // Radius of the circle around the pixel = 3
     float threshold = 0.20 * I; // the intensity threshold to be considered an interest point
@@ -172,17 +172,17 @@ std::vector<std::pair<float, std::vector<Keypoint>>> computePyramid(Mat &image)
         Mat resized = resize(scale[i], image);
         Mat descriptor;
         std::vector<Keypoint> keypoints;
-        ORB orb = ORB(resized, keypoints, descriptor);
-        orb.detectKeypoints();
+        FAST fast = FAST(resized, keypoints, descriptor);
+        fast.detectKeypoints();
         allKeypointsWithScale.push_back({scale[i], keypoints});
         Stitcher stitch = Stitcher();
         const std::string filename = "resized" + std::to_string(i) + ".ppm";
-        stitch.drawKeypoints(resized, orb.keypoints, filename);
+        stitch.drawKeypoints(resized, fast.keypoints, filename);
     }
     return allKeypointsWithScale;
 }
 
-std::vector<std::pair<int,int>> ORB::detectAndCompute()
+std::vector<std::pair<int,int>> FAST::detectAndCompute()
 {
     std::vector<std::pair<float, std::vector<Keypoint>>> allKeypoints = computePyramid(image);
     std::vector<std::pair<int,int>> commonKeypoints;

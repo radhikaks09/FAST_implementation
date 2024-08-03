@@ -1,15 +1,15 @@
-#ifndef ORB_HPP
-#define ORB_HPP
+#ifndef FAST_HPP
+#define FAST_HPP
 
 #include "mat.hpp"
 #include "feature.hpp"
 
-class ORB
+class FAST
 {
 public:
     std::vector<Keypoint> &keypoints;
     Mat &image, &descriptor;
-    ORB(Mat &image, std::vector<Keypoint> &keypoints, Mat &descriptor);
+    FAST(Mat &image, std::vector<Keypoint> &keypoints, Mat &descriptor);
     // Check if the given pixel coordinates and intensity (x, y, I) is a keypoint
     // Return true if it's a keypoint, otherwise false
     std::pair<bool, unsigned char> isPixelKeypoint(int x, int y, float I);
