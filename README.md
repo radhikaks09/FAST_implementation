@@ -34,14 +34,14 @@ This class contains a method that draws the identified keypoints on the input im
 
 ## Running the Project
 1. Compile the project using one of the following methods:
-    1. cd into source dir then run the compilation command
-    `cd source`
-    `g++ -std=c++11 main.cpp mat.cpp stitch.cpp fast.cpp feature.cpp`
+    1. cd into source dir then run the compilation command <br/>
+    `cd source` <br/>
+    `g++ -std=c++11 main.cpp mat.cpp stitch.cpp fast.cpp feature.cpp` <br/>
    or
-    2. run the following command from the main project directory
+    2. run the following command from the main project directory <br/>
     `g++ -std=c++11 source/*.cpp`
-2. Run the project using the following command:
-    `./a.out <filename>.ppm`
+2. Run the project using the following command: </br>
+    `./a.out <filename>.ppm` <br/>
     Make sure the image given as input in the commandline is in the .ppm (P3) format.
 
 ## Output
