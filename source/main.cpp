@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 #include "../header/mat.hpp"
-#include "../header/stitch.hpp"
+#include "../header/draw.hpp"
 #include "../header/fast.hpp"
 #include "../header/feature.hpp"
 
@@ -23,12 +23,12 @@ int main(int argc, char *argv[])
     Mat mat = Mat(filename);
     Mat gray = convertToGray(mat);
     // Write the grayscale image to a new PPM file
-    Stitcher stitch = Stitcher();
+    Draw draw = Draw();
     Mat descriptor;
     std::vector<Keypoint> keypoints;
     FAST fast = FAST(gray,keypoints,descriptor);
     std::vector<std::pair<int,int>> commonKeypoint = fast.detectAndCompute();
-    stitch.drawKeypoints(gray,fast.keypoints,"output");
+    draw.drawKeypoints(gray,fast.keypoints,"output");
     Mat resized = resize(0.125,gray);
     writePPM(resized,"resized.ppm");
     return 0;

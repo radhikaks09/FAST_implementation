@@ -1,7 +1,7 @@
 #include "../header/fast.hpp"
 #include "../header/feature.hpp"
 #include "../header/mat.hpp"
-#include "../header/stitch.hpp"
+#include "../header/draw.hpp"
 #include <fstream>
 #include <string>
 #include <cmath>
@@ -175,9 +175,9 @@ std::vector<std::pair<float, std::vector<Keypoint>>> computePyramid(Mat &image)
         FAST fast = FAST(resized, keypoints, descriptor);
         fast.detectKeypoints();
         allKeypointsWithScale.push_back({scale[i], keypoints});
-        Stitcher stitch = Stitcher();
+        Draw draw = Draw();
         const std::string filename = "resized" + std::to_string(i) + ".ppm";
-        stitch.drawKeypoints(resized, fast.keypoints, filename);
+        draw.drawKeypoints(resized, fast.keypoints, filename);
     }
     return allKeypointsWithScale;
 }
