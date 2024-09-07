@@ -36,7 +36,7 @@ This class contains a method that draws the identified keypoints on the input im
 1. Compile the project using one of the following methods:
     1. cd into source dir then run the compilation command <br/>
     `cd source` <br/>
-    `g++ -std=c++11 main.cpp mat.cpp stitch.cpp fast.cpp feature.cpp` <br/>
+    `g++ -std=c++11 main.cpp mat.cpp draw.cpp fast.cpp feature.cpp` <br/>
    or
     2. run the following command from the main project directory <br/>
     `g++ -std=c++11 source/*.cpp`
